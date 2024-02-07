@@ -14,9 +14,23 @@ router.post(
     successRedirect: "/dashboard",
     failureRedirect: "/auth/login",
     failureMessage: true,
-    /* FIX ME: 😭 failureMsg needed when login fails */
   })
 );
+
+// router.post('/login', (req, res, next) => {
+//   passport.authenticate('local', (err, user, info) => {
+//     if (err) { return next(err); }
+//     if (!user) {
+//       req.session.errorMessage = info.message;
+//       return res.redirect('/auth/login');
+//     }
+//     req.logIn(user, (err) => {
+//       if (err) { return next(err); }
+//       return res.redirect('/dashboard');
+//     });
+//   })(req, res, next);
+// });
+
 
 router.get("/logout", (req, res) => {
   req.logout((err) => {

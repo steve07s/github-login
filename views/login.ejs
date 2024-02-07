@@ -13,8 +13,7 @@
             id="email"
             name="email"
             class="form-control"
-            placeholder="Enter Email"
-          />
+            placeholder="Enter Email" />
         </div>
         <div class="form-group">
           <label for="password">Password</label>
@@ -23,13 +22,23 @@
             id="password"
             name="password"
             class="form-control"
-            placeholder="Enter Password"
-          />
+            placeholder="Enter Password" />
         </div>
         <button type="submit" class="btn btn-primary btn-block">Login</button>
       </form>
       <p class="mt-4">New User? <a href="/auth/register">Register</a></p>
       <p>Forgot Password? <a href="/auth/forgot">Reset</a></p>
+
+      <div id="toast" class="toast-container" style="display: none;">
+        <div class="toast-message">Password is incorrect</div>
+      </div>
     </div>
   </div>
 </div>
+<script>
+  function showToast() {
+    var x = document.getElementById("toast");
+    x.style.display = "block";
+    setTimeout(function () { x.style.display = "none"; }, 3000); // 3秒後自動消失
+  }
+</script>
