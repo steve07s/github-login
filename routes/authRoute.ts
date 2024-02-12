@@ -30,6 +30,16 @@ router.post('/login', (req, res, next) => {
   })(req, res, next);
 });
 
+router.get('/github', passport.authenticate('github'));
+
+router.get('/github/callback', 
+  passport.authenticate('github', { failureRedirect: '/login' }),
+  function(req, res) {
+    res.redirect('/dashboard');
+  }
+);
+
+
 router.get("/logout", (req, res) => {
   req.logout((err) => {
     if (err) console.log(err);

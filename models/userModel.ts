@@ -3,7 +3,8 @@ const database = [
     id: 1,
     name: "Jimmy Smith",
     email: "jimmy123@gmail.com",
-    password: "jimmy123!",
+    password: "jimmy123!"
+    
   },
   {
     id: 2,
@@ -33,6 +34,10 @@ const userModel = {
       return user;
     }
     throw new Error(`Couldn't find user with id: ${id}`);
+  },
+  findOneByUsername: (username: string) => {
+    const user = database.find((user) => user.name === username);
+    return user || null;
   },
 };
 

@@ -5,6 +5,9 @@ import session from "express-session";
 import path from "path";
 import passportMiddleware from "./middleware/passportMiddleware";
 import flash from "connect-flash";
+import * as dotenv from 'dotenv';
+dotenv.config();
+
 
 
 const port = process.env.port || 5500;
