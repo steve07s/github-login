@@ -7,19 +7,17 @@ const router = express.Router();
 
 router.get("/login", forwardAuthenticated, (req, res) => {
   
-  res.render("login", { test: req.session.messages });
+  res.render("login");
 });
 
 router.post('/login', (req, res, next) => {
   passport.authenticate('local', (err, user, info) => {
     if (err) {
       req.flash('error', err.message);
-      req.session.messages = err.message
       return res.redirect('/auth/login');
     }
     if (!user) {
       req.flash('error', info.message);
-      req.session.messages = info.message
       return res.redirect('/auth/login');
     }
     req.logIn(user, (err) => {
@@ -31,13 +29,6 @@ router.post('/login', (req, res, next) => {
     });
   })(req, res, next);
 });
-
-
-router.get('/test', (req, res, next) => {
-  req.session.messages = req.query.test
-  return res.redirect('/auth/login');
-});
-
 
 router.get('/github', passport.authenticate('github'));
 

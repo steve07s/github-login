@@ -8,12 +8,6 @@ import flash from "connect-flash";
 import * as dotenv from 'dotenv';
 dotenv.config();
 
-declare module 'express-session' {
-  interface SessionData {
-    messages?: any; 
-  }
-}
-
 const port = process.env.port || 5500;
 
 const app = express();
