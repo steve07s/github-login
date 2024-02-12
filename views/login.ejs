@@ -1,3 +1,4 @@
+<!-- login.ejs-->
 <div class="row mt-5">
   <div class="col-md-6 m-auto">
     <div class="card card-body text-center">
@@ -5,6 +6,11 @@
         <img src="/secure-icon.png" alt="icon" width="20%" />
       </h1>
       <h2>Login</h2>
+      <% if (messages.error && messages.error.length > 0) { %>
+        <div class="alert alert-danger" role="alert">
+          <%= messages.error %>
+        </div>
+      <% } %>
       <form action="/auth/login" method="POST">
         <div class="form-group">
           <label for="email">Email</label>

@@ -1,12 +1,16 @@
+//app.ts
 import express from "express";
 import expressLayouts from "express-ejs-layouts";
 import session from "express-session";
 import path from "path";
 import passportMiddleware from "./middleware/passportMiddleware";
+import flash from "connect-flash";
+
 
 const port = process.env.port || 5500;
 
 const app = express();
+
 declare global {
   namespace Express {
     interface User {
@@ -32,6 +36,12 @@ app.use(
     },
   })
 );
+app.use(flash());
+
+app.use((req, res, next) => {
+  res.locals.messages = { error: req.flash('error') };
+  next();
+});
 
 import authRoute from "./routes/authRoute";
 import indexRoute from "./routes/indexRoute";
@@ -56,6 +66,7 @@ app.use((req, res, next) => {
 
 app.use("/", indexRoute);
 app.use("/auth", authRoute);
+
 
 app.listen(port, () => {
   console.log(`🚀 Server has started on port ${port}`);
