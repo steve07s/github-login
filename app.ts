@@ -8,7 +8,11 @@ import flash from "connect-flash";
 import * as dotenv from 'dotenv';
 dotenv.config();
 
-
+declare module 'express-session' {
+  interface SessionData {
+    messages?: any; 
+  }
+}
 
 const port = process.env.port || 5500;
 
@@ -40,7 +44,6 @@ app.use(
   })
 );
 app.use(flash());
-
 app.use((req, res, next) => {
   res.locals.messages = { error: req.flash('error') };
   next();
