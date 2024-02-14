@@ -25,7 +25,7 @@ router.post('/login', (req, res, next) => {
         req.flash('error', err.message);
         return res.redirect('/auth/login');
       }
-      return res.redirect('/dashboard');
+      return res.redirect('/admin');
     });
   })(req, res, next);
 });

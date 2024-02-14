@@ -19,6 +19,7 @@ declare global {
       name: string;
       email: string;
       password: string;
+      role:string;
     }
   }
 }
@@ -29,7 +30,7 @@ app.use(
   session({
     secret: "secret",
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
     cookie: {
       httpOnly: true,
       secure: false,

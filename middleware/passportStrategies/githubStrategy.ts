@@ -17,6 +17,7 @@ const findOrCreateUserFromGithub = async (profile: any): Promise<any> => {
         name: profile.displayName || username, 
         email: '',
         password: '',
+        role:'user'
       };
       database.push(user);
     }
@@ -42,6 +43,7 @@ const githubStrategy: GitHubStrategy = new GitHubStrategy(
     done: VerifyCallback
   ) => {
     try {
+      console.log(profile)
       const user = await findOrCreateUserFromGithub(profile);
       done(null, user);
     } catch (error) {
